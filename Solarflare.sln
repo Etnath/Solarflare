@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solarflare.Console", "Solarflare.Console\Solarflare.Console.csproj", "{225ADB5F-4015-4423-840A-78C2F31F62B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solarflare.Compiler", "Solarflare.Compiler\Solarflare.Compiler.csproj", "{ADA4BB7B-31AA-4D1B-9DBB-2371F0579A46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solaflare.UnitTest", "Solaflare.UnitTest\Solaflare.UnitTest.csproj", "{5199B7EA-C886-46B4-AAB1-6F90081C0AA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{225ADB5F-4015-4423-840A-78C2F31F62B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{225ADB5F-4015-4423-840A-78C2F31F62B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{225ADB5F-4015-4423-840A-78C2F31F62B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA4BB7B-31AA-4D1B-9DBB-2371F0579A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA4BB7B-31AA-4D1B-9DBB-2371F0579A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA4BB7B-31AA-4D1B-9DBB-2371F0579A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA4BB7B-31AA-4D1B-9DBB-2371F0579A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5199B7EA-C886-46B4-AAB1-6F90081C0AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5199B7EA-C886-46B4-AAB1-6F90081C0AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5199B7EA-C886-46B4-AAB1-6F90081C0AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5199B7EA-C886-46B4-AAB1-6F90081C0AA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

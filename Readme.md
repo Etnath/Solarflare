@@ -2,4 +2,4 @@
 
 An handritten compiler written in C#.
 
-More info to come
+This is just me having fun after stumbling on [a link](https://github.com/terrajobst/minsk)
