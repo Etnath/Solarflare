@@ -1,5 +1,8 @@
 ﻿namespace Solarflare.Compiler
 {
+    /// <summary>
+    /// Node of the syntax tree
+    /// </summary>
     public class Node
     {
         public Token Token  { get; set; }
@@ -43,6 +46,22 @@
             yield return Left;
             yield return new Node(Token);
             yield return Right;
+        }
+    }
+
+    public class UnaryNode : Node
+    {
+        public Node Child { get; set; }
+        
+        public UnaryNode(Token token, Node child) : base(token)
+        {
+            Child = child;
+        }
+
+        public override IEnumerable<Node> GetChildren()
+        {
+            yield return new Node(Token);
+            yield return Child;
         }
     }
 }

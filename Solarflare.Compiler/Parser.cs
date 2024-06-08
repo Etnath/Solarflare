@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Solarflare.Compiler
 {
@@ -17,6 +18,11 @@ namespace Solarflare.Compiler
             { TokenKind.MinusOperator, 1 },
             { TokenKind.SlashOperator, 2 },
             { TokenKind.StarOperator, 2 },
+        };
+
+        private readonly Dictionary<TokenKind, int> _unaryOperatorPriorityMapping = new Dictionary<TokenKind, int>() {
+            { TokenKind.PlusOperator, 3 },
+            { TokenKind.MinusOperator, 3 }
         };
 
         private Token[] _tokens;
@@ -143,8 +149,20 @@ namespace Solarflare.Compiler
 
         private Node ParseExpression(int parentPriority)
         {
-            //Before we parse for a factor, let's see if we have a number on the left side of the tree first
-            var node = ParseExpression();
+            Node node;
+
+            var unaryPriority = GetUnaryOperatorPriority(_currentToken.Kind);
+            if (unaryPriority > 0 && unaryPriority > parentPriority)
+            {
+                var unaryToken = NextToken();
+                var child = ParseExpression();
+                node = new UnaryNode(unaryToken, child);
+                
+            }
+            else
+            {
+                node = ParseExpression();
+            }       
 
             while (true)
             {
@@ -172,6 +190,19 @@ namespace Solarflare.Compiler
                 return 0;
 
             return _operatorPriorityMapping[tokenKind];
+        }
+
+        /// <summary>
+        /// Get the priority of an operator
+        /// </summary>
+        /// <param name="tokenKind">The kind of operator</param>
+        /// <returns>The prioirty of a given operator kind, 0 if the token kind is not an operator</returns>
+        private int GetUnaryOperatorPriority(TokenKind tokenKind)
+        {
+            if (!_unaryOperatorPriorityMapping.ContainsKey(tokenKind))
+                return 0;
+
+            return _unaryOperatorPriorityMapping[tokenKind];
         }
     }
 }

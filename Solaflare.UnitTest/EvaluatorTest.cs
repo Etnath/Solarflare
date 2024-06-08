@@ -49,5 +49,16 @@ namespace Solaflare.UnitTest
 
             Assert.That(result == 26);
         }
+
+
+        [Test]
+        public void EvaluateTest_WithUnaryOperator()
+        {
+            Parser parser = new Parser("-(5 + 8) * 2");
+            Evaluator evaluator = new Evaluator();
+            var result = evaluator.Evaluate(parser.GenerateTree());
+
+            Assert.That(result == -26);
+        }
     }
 }

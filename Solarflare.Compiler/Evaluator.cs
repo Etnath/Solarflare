@@ -17,12 +17,25 @@ namespace Solarflare.Compiler
                 
         }
 
-        public int Evaluate(Node rootNode)
+        public int Evaluate(Node node)
         {
-            if (rootNode.Token.Kind == TokenKind.Number)
-                return (int)rootNode.Token.Value;
+            if (node.Token.Kind == TokenKind.Number)
+                return (int)node.Token.Value;
 
-            if (rootNode is BinaryNode b)
+            if (node is UnaryNode u)
+            {
+                var child = Evaluate(u.Child);
+
+                if (u.Token.Kind == TokenKind.MinusOperator)
+                    return -child;
+                else if (u.Token.Kind == TokenKind.MinusOperator)
+                    return child;
+                else throw new InvalidOperationException($"Invalid unary operator {u.Token.Kind}");
+
+
+            }
+
+            if (node is BinaryNode b)
             {
                 var left = Evaluate(b.Left);
                 var right = Evaluate(b.Right);
@@ -37,12 +50,12 @@ namespace Solarflare.Compiler
                     return left / right;
                 else throw new InvalidOperationException($"Invalid operator {b.Token.Kind}");
             }
-            else if (rootNode is ParenthesisNode p)
+            else if (node is ParenthesisNode p)
             {
                 return Evaluate(p.Expression);
             }
 
-            throw new InvalidOperationException($"Invalid node {rootNode.Token.Kind}");
+            throw new InvalidOperationException($"Invalid node {node.Token.Kind}");
         }
     }
 }
